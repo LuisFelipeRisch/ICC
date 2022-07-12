@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/luis/Documentos/UFPR/ICC'
+gcc -g -c  utils.c
+gcc -g -c  sislin.c
+gcc -g -c  Metodos.c
+gcc -g    -c -o labSisLin.o labSisLin.c
+gcc -g -o labSisLin utils.o sislin.o Metodos.o labSisLin.o -lm
+make: Leaving directory '/home/luis/Documentos/UFPR/ICC'
+ 
