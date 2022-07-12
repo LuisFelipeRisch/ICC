@@ -48,7 +48,6 @@ void absDiffBetweenVets(real_t *vetDiff, real_t *vet1, real_t *vet2, int tam);
 void copyVet(real_t *vet1, real_t *vet2, int tam);
 void calculateResidue(SistLinear_t *SL, real_t *x, real_t *residue); 
 void sumArrays(real_t *sumArray, real_t *vet1, real_t *vet2, int tam); 
-void copySL(SistLinear_t *SL1, SistLinear_t *SL2); 
 
 #endif // __SISLIN_H__
 

@@ -71,7 +71,7 @@ real_t normaL2Residuo(real_t *residue, int tam)
 int gaussSeidel (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
 {
   *tTotal = timestamp(); 
-  int currIteration = 0; 
+  int currIteration = 1; 
   real_t result;
   real_t *currIterationX = (real_t *) malloc(SL->n * sizeof(real_t)); 
   real_t *oldIterationX = (real_t *) malloc(SL->n * sizeof(real_t)); 
@@ -104,7 +104,7 @@ int gaussSeidel (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
   free(oldIterationX);
   free(diffIterationX);
   *tTotal = timestamp() - *tTotal; 
-  return currIteration; 
+  return 0; 
 }
 
 
@@ -121,8 +121,6 @@ int gaussSeidel (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
   */
 int refinamento (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
 {
-  *tTotal = timestamp(); 
-
   real_t *originalB = (real_t *) malloc(SL->n * sizeof(real_t));
   real_t *residue = (real_t *) malloc(SL->n * sizeof(real_t));
   real_t *w = (real_t *) malloc(SL->n * sizeof(real_t));
@@ -145,10 +143,9 @@ int refinamento (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
     counter++;
   }
 
+
   free(originalB);
   free(residue);
   free(w);
-  *tTotal = timestamp() - *tTotal; 
-  return counter;
 }
 

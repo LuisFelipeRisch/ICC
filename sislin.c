@@ -265,12 +265,3 @@ void sumArrays(real_t *sumArray, real_t *vet1, real_t *vet2, int tam){
   for (int i = 0; i < tam; i++)
     sumArray[i] = vet1[i] + vet2[i];
 }
-
-void copySL(SistLinear_t *SL1, SistLinear_t *SL2){
-  for (int i = 0; i < SL1->n; i++)
-  {
-    SL1->b[i] = SL2->b[i];
-    for (int j = 0; j < SL1->n; j++)
-      SL1->A[i][j] = SL2->A[i][j]; 
-  }
-}
