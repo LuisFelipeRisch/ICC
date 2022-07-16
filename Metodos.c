@@ -80,7 +80,7 @@ int gaussSeidel (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
   setZeroVet(oldIterationX, SL->n);
   setZeroVet(diffIterationX, SL->n);
   
-  while (currIteration == 1 || (currIteration < MAXIT && findMaxInVet(diffIterationX, SL->n) > erro))
+  while (currIteration == 0 || (currIteration < MAXIT && findMaxInVet(diffIterationX, SL->n) > erro))
   {
     for (int i = 0; i < SL->n; i++)
     {
@@ -135,7 +135,6 @@ int refinamento (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal)
   while (counter < MAXIT && l2Norm > erro)
   {
     calculateResidue(SL, x, residue);
-    prnVetor(residue, SL->n);
     l2Norm = normaL2Residuo(residue, SL->n);
     copyVet(SL->b, residue, SL->n);
     copyVet(w, x, SL->n);

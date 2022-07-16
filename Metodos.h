@@ -17,5 +17,7 @@ int refinamento (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal);
 // Método de Gauss-Seidel
 int gaussSeidel (SistLinear_t *SL, real_t *x, real_t erro, double *tTotal);
 
+real_t normaL2Residuo(real_t *residue, int tam); 
+
 #endif // __METODOS_H__
 
