@@ -2,9 +2,16 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "edoHandler.h"
+#include "solve.h"
 
 int main(int argc, char const *argv[])
 {
-  printf("Hello World");
+  Edo_EQ *edoEquation;
+  triDiagonal_SL *triDiagonalSL;
+  edoEquation = allocEdoEquation(5);
+  triDiagonalSL = allocTriDiagonal(5);
+  printf("hello word!");
+  freeEdoEquation(edoEquation);
+  freeTriDiagonal(triDiagonalSL);
   return 0;
 }

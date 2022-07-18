@@ -1,4 +1,30 @@
+#include <stdlib.h>
 #include "solve.h"
+#include "utils.h"
+
+triDiagonal_SL *allocTriDiagonal(uint n)
+{
+  triDiagonal_SL *triDiagonalSL = (triDiagonal_SL *)malloc(sizeof(triDiagonal_SL));
+
+  triDiagonalSL->n = n;
+
+  triDiagonalSL->mainDiagonal = allocArray(n);
+  triDiagonalSL->upperDiagonal = allocArray(n - 1);
+  triDiagonalSL->lowerDiagonal = allocArray(n - 1);
+  triDiagonalSL->independetTerms = allocArray(n);
+
+  return triDiagonalSL;
+}
+
+void freeTriDiagonal(triDiagonal_SL *triDiagonalSL)
+{
+  free(triDiagonalSL->mainDiagonal);
+  free(triDiagonalSL->upperDiagonal);
+  free(triDiagonalSL->lowerDiagonal);
+  free(triDiagonalSL->independetTerms);
+
+  free(triDiagonalSL);
+}
 
 void gaussElimination(triDiagonal_SL *triDiagonalSL)
 {

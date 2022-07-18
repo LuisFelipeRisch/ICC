@@ -1,6 +1,21 @@
 #include "utils.h"
 #include "edoHandler.h"
 #include "solve.h"
+#include <stdlib.h>
+
+Edo_EQ *allocEdoEquation(uint n)
+{
+  Edo_EQ *edoEquation = (Edo_EQ *)malloc(sizeof(Edo_EQ));
+
+  edoEquation->n = n;
+
+  return edoEquation;
+}
+
+void freeEdoEquation(Edo_EQ *edoEquation)
+{
+  free(edoEquation);
+}
 
 void buildTriDiagonalSL(Edo_EQ *edoEquation,
                         triDiagonal_SL *triDiagonalSL)

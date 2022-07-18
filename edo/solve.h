@@ -10,4 +10,7 @@ typedef struct
   uint n;
 } triDiagonal_SL;
 
+triDiagonal_SL *allocTriDiagonal(uint n);
+void freeTriDiagonal(triDiagonal_SL *triDiagonalSL);
+
 #endif
