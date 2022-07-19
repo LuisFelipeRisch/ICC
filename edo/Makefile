@@ -4,14 +4,14 @@
 
       PROG = main
       OBJS = utils.o \
+             solve.o \
              edoHandler.o \
 						 coefficients.o \
-             solve.o \
              $(PROG).o
 
 .PHONY: limpa faxina clean distclean purge all
 
-%.o: %.c %.h utils.h edoHandler.h coefficients.h solve.h
+%.o: %.c %.h utils.h solve.h edoHandler.h coefficients.h
 	$(CC) -c $(CFLAGS) $<
 
 $(PROG):  $(OBJS)

@@ -4,13 +4,12 @@
 #include "utils.h"
 #include "edoHandler.h"
 
-typedef struct
-{
-  real_t *mainDiagonal, *lowerDiagonal, *upperDiagonal, *independetTerms;
-  uint n;
-} triDiagonal_SL;
-
 triDiagonal_SL *allocTriDiagonal(uint n);
 void freeTriDiagonal(triDiagonal_SL *triDiagonalSL);
+void printTriDiagonalMatrix(triDiagonal_SL *triDiagonalSL);
+void gaussElimination(triDiagonal_SL *triDiagonalSL);
+void retroSubstitution(triDiagonal_SL *triDiagonalSL,
+                       real_t *solution);
+void gaussSeidel(triDiagonal_SL *triDiagonalSL, real_t *solution, real_t tolerance);
 
 #endif

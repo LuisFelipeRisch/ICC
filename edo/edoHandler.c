@@ -1,13 +1,11 @@
-#include "utils.h"
+
 #include "edoHandler.h"
 #include "solve.h"
 #include <stdlib.h>
 
-Edo_EQ *allocEdoEquation(uint n)
+Edo_EQ *allocEdoEquation()
 {
   Edo_EQ *edoEquation = (Edo_EQ *)malloc(sizeof(Edo_EQ));
-
-  edoEquation->n = n;
 
   return edoEquation;
 }
@@ -40,11 +38,21 @@ void buildTriDiagonalSL(Edo_EQ *edoEquation,
   triDiagonalSL->independetTerms[numberOfPoints - 1] -= edoEquation->yb * (1 + h * edoEquation->p(edoEquation->b - h) / 2.0);
 }
 
-void setEdoFunction(Edo_EQ *edoFunction,
-                    real_t (*p)(real_t),
-                    real_t (*q)(real_t),
-                    real_t (*r)(real_t))
+void initEdoEquation(Edo_EQ *edoFunction,
+                     uint n,
+                     uint a,
+                     uint b,
+                     uint ya,
+                     uint yb,
+                     real_t (*p)(real_t),
+                     real_t (*q)(real_t),
+                     real_t (*r)(real_t))
 {
+  edoFunction->n = n;
+  edoFunction->a = a;
+  edoFunction->b = b;
+  edoFunction->ya = ya;
+  edoFunction->yb = yb;
   edoFunction->p = p;
   edoFunction->q = q;
   edoFunction->r = r;
