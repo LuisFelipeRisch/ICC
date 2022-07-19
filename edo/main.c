@@ -64,9 +64,11 @@ int main(int argc, char const *argv[])
 
       buildTriDiagonalSL(edoEquation, triDiagonalSL);
       gaussSeidel(triDiagonalSL, solution, DEFAULT_TOLERANCE);
-
       printTriDiagonalMatrix(triDiagonalSL);
       printf("SOLUTION: \n");
+      printArray(solution, size);
+      differentGaussSeidel(edoEquation, triDiagonalSL, solution, DEFAULT_TOLERANCE);
+      printf("\nSOLUTION 2: \n");
       printArray(solution, size);
 
       printf("\n\n ======================================== \n\n");

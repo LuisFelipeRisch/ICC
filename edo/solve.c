@@ -99,6 +99,64 @@ void gaussSeidel(triDiagonal_SL *triDiagonalSL, real_t *solution, real_t toleran
   free(residue);
 }
 
+void differentGaussSeidel(Edo_EQ *edoEquation, triDiagonal_SL *triDiagonalSL, real_t *solution, real_t tolerance)
+{
+  uint size;
+  real_t d, di, ds, b;
+  real_t lastDI, lastDS;
+  real_t xi, h;
+  real_t error = 1.0 + tolerance;
+  uint counter = 0;
+
+  size = edoEquation->n;
+  h = (edoEquation->b - edoEquation->a) / (size + 1.0);
+
+  for (uint i = 0; i < size; i++)
+    solution[i] = 0;
+
+  while (counter < MAX_ITERATION && error > tolerance)
+  {
+    real_t *residue = allocArray(size);
+    for (uint i = 0; i < size; i++)
+    {
+      xi = edoEquation->a + (i + 1) * h;
+
+      di = 1 - h * edoEquation->p(xi) / 2.0;
+      d = -2 + h * h * edoEquation->q(xi);
+      ds = 1 + h * edoEquation->p(xi) / 2.0;
+      b = h * h * edoEquation->r(xi);
+
+      if (i == 0)
+        b -= edoEquation->ya * (1 - h * edoEquation->p(edoEquation->a + h) / 2.0);
+      if (i == size - 1)
+        b -= edoEquation->yb * (1 + h * edoEquation->p(edoEquation->b - h) / 2.0);
+
+      // calculating solution
+      if (i == 0)
+        solution[0] = (b - ds * solution[1]) / d;
+      else if (i == size - 1)
+        solution[size - 1] = (b - lastDI * solution[size - 2]) / d;
+      else
+        solution[i] = (b - lastDI * solution[i - 1] - lastDS * solution[i + 1]) / d;
+
+      // calculating residue - needed to be reviwed
+      // if (i == 0)
+      //   residue[0] = b - (d * solution[0] + ds * solution[1]);
+      // else if (i == size - 1)
+      //   residue[size - 1] = b - (d * solution[size - 1] + lastDI * solution[size - 2]);
+      // else
+      //   residue[i] = b - (d * solution[i] + lastDI * solution[i - 1] + ds * solution[i + 1]);
+
+      lastDI = di;
+      lastDS = ds;
+    }
+    calculateResidue(triDiagonalSL, solution, residue);
+    error = L2norm(residue, size);
+    free(residue);
+    counter++;
+  }
+}
+
 void printTriDiagonalMatrix(triDiagonal_SL *triDiagonalSL)
 {
   uint size = triDiagonalSL->n;

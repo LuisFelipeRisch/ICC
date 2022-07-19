@@ -11,5 +11,6 @@ void gaussElimination(triDiagonal_SL *triDiagonalSL);
 void retroSubstitution(triDiagonal_SL *triDiagonalSL,
                        real_t *solution);
 void gaussSeidel(triDiagonal_SL *triDiagonalSL, real_t *solution, real_t tolerance);
+void differentGaussSeidel(Edo_EQ *edoEquation, triDiagonal_SL *triDiagonalSL, real_t *solution, real_t tolerance);
 
 #endif
