@@ -19,7 +19,7 @@ typedef struct
 // Métodos
 double bisseccao(double xl, double xu, double f(double x), double epsilon);
 double newtonRaphson(double x0, double f(double x), double derivative_f(double x), double epsilon);
-double secante(Polinomio p, double x0, double x1, double eps, int *it, double *raiz);
+double secante(double x0, double x1, double f(double x), double epsilon);
 
 // Cálculo de Polinômios
 void calcPolinomio_rapido(Polinomio p, double x, double *px, double *dpx);

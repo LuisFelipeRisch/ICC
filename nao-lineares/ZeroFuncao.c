@@ -54,9 +54,24 @@ double newtonRaphson(double x0, double f(double x), double derivative_f(double x
 	return xi;
 }
 
-double secante(Polinomio p, double x0, double x1, double eps,
-							 int *it, double *raiz)
+double secante(double x0, double x1, double f(double x), double epsilon)
 {
+	double xOld, xNew, aux;
+	uint counter = 0;
+
+	xOld = x0;
+	xNew = x1;
+
+	do
+	{
+		aux = xNew;
+		xNew = xNew - (f(xNew) * (xNew - xOld)) / (f(xNew) - f(xOld));
+		xOld = aux;
+		counter++;
+
+	} while (fabs((xNew - xOld) * 100 / xNew) > epsilon && counter < MAXIT);
+
+	return xNew;
 }
 
 void calcPolinomio_rapido(Polinomio p, double x, double *px, double *dpx)
